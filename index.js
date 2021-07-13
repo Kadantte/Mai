@@ -1,6 +1,8 @@
 // load env file (contains important keys)
 require('dotenv').config();
 
+const fs = require('fs');
+
 const Client = require(`${process.cwd()}/struct/Client`);
 const config = require(`${process.cwd()}/config`);
 
@@ -11,12 +13,14 @@ const options = {
   log: true,
   paths: [
     'action', 'anime', 'bot',
-    'core', 'fun', 'moderation',
+    'core', 'fun', 'moderation', 'music',
     'owner', 'setup', 'social','utility'
   ]
 };
 
 client.database?.init();
+
+client.musicPlayer?.init();
 
 client.loadCommands({ parent: 'commands', ...options });
 

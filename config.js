@@ -9,6 +9,8 @@ const settings = {
         type: 'COMPETING'
       }
     },
+    // Disable Mentions except Users
+    allowedMentions: {parse: ['users']},
     // Sweep messages every 12 hours
     messageCacheLifetime: 43200,
     messageSweepInterval: 43200
@@ -70,7 +72,7 @@ const settings = {
   // logging channels for the bot. To disable logging specific events - pass
   // a falsy value (undefined, null, 0). You may also remove the property
   // altogether, although this is not preferred.
-  channels: { debug: '792385081850986496', uploads: '728866550207086642', logs: '761935856331128837' },
+  channels: { debug: '792385081850986496', votes: '809665224377761813', uploads: '728866550207086642', logs: '761935856331128837' },
 
   // enable/disable database system in the bot, this will automatically disable
   // all commands and features that requires database if disabled.
@@ -86,7 +88,7 @@ const settings = {
       family: 4
     }
   },
-
+  
   // Array of owners recognized by the bot. ID here will be given access to
   // owner based commands.
   owners: [ '545427431662682112' ],

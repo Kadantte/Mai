@@ -30,8 +30,10 @@ module.exports = class VoteManager{
         webhook: new Top.Webhook('MaiBestWaifu')
       };
 
-      app.post('/dblwebhook', this.top_gg.webhook.middleware(), (req,res) => {
-        console.log(req)
+      app.post('/dblwebhook', this.top_gg.webhook.middleware(), (req ,res) => {
+        this.client.emit('userVoted', req, res);
+        
+        res?.status(200)?.send('OK');
       });
 
       app.listen(1200);

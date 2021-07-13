@@ -10,6 +10,7 @@ const CommandManager = require(`./commands/Manager`);
 const GuildProfilesManager = require(`./guilds/ProfileManager`);
 const Collections = require(`./Collections`);
 const Mongoose = require(`./Mongoose`);
+const Music = require('./Music');
 const PingManager = require(`./PingManager`);
 const ImageManager = require(`./Images`);
 const VoteManager = require(`./votes/VoteManager`);
@@ -87,6 +88,12 @@ module.exports = class MaiClient extends Client{
     this.images = new ImageManager();
 
     /**
+     * A dedicated music system for Mai.
+     * @type {MusicPlayer}
+     */
+    this.musicPlayer = new Music(this);
+
+    /**
      * The external database connected to this bot (null when disabled);
      * @type {?Mongoose}
     */
@@ -122,6 +129,16 @@ module.exports = class MaiClient extends Client{
      */
     if (typeof settings.channels?.debug === 'string'){
       this.config.channels.debug = settings.channels.debug;
+    } else {
+      // Do nothing...
+    };
+
+    /**
+     * Channel ID used by the bot to send vote messages
+     * @type {?Snowflake}
+     */
+    if (typeof settings.channels?.votes === 'string'){
+      this.config.channels.votes = settings.channels.votes;
     } else {
       // Do nothing...
     };
